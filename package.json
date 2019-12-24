@@ -10,7 +10,11 @@
     "test": "jest",
     "lint": "eslint --ext ts --ignore-path ./.eslintignore src"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peerigon/typescript-validate.git"
+  },
+  "author": "peerigon <developers@peerigon.com>",
   "license": "Unlicense",
   "peerDependencies": {
     "typescript": "^3.6.4"
