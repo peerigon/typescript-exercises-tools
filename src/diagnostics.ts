@@ -2,7 +2,7 @@ import ts from "./typescript";
 import {pluginName} from "./const";
 
 export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
-    const sourceCode = sourceFile.getText();
+    const sourceCode = sourceFile.getFullText();
 
     const annotations = sourceCode.matchAll(
         /(.*?\/\/ 💣 Expect error (\d+): (.*?)\r?\n\s*)([^\n\r]*)/g,

@@ -2,15 +2,23 @@ import {assertProgramToOnlyHaveExpectedErrors} from "./assertions";
 import {fixturePaths} from "./test/fixtures";
 
 describe("assertProgramToOnlyHaveExpectedErrors()", () => {
-    test("throws no error when the program has only expected errors", () => {
-        assertProgramToOnlyHaveExpectedErrors(fixturePaths.ok);
+    test("throws no error when the program has only expected errors (ok-variable.ts)", () => {
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.okVariable);
+    });
+
+    test("throws no error when the program has only expected errors (ok-function.ts)", () => {
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.okVariable);
+    });
+
+    test("throws no error when the program has only expected errors (ok-preceding-comment.ts)", () => {
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.okVariable);
     });
 
     test("throws an error when the comment is at a wrong place", () => {
         expect(() =>
             assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorWrongPlace),
         ).toThrowErrorMatchingInlineSnapshot(
-            "\"Argument of type '4' is not assignable to parameter of type 'string'.\"",
+            "\"Type '\\\"my string\\\"' is not assignable to type 'number'.\"",
         );
     });
 
@@ -23,8 +31,6 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
     test("allows to pass custom compilerOptions", () => {
         expect(() =>
             assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode, {strict: true}),
-        ).toThrowErrorMatchingInlineSnapshot(
-            "\"Type 'null' is not assignable to type 'number'.\"",
-        );
+        ).toThrowErrorMatchingInlineSnapshot("\"Type 'null' is not assignable to type 'number'.\"");
     });
 });
