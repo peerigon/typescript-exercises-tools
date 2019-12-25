@@ -10,7 +10,8 @@
     "test": "jest",
     "posttest": "run-p lint",
     "lint": "eslint --ext ts --ignore-path ./.eslintignore src",
-    "prepublish": "run-p build"
+    "prepare": "run-p build",
+    "watch:build:tsc": "npm run build:tsc -- -w"
   },
   "repository": {
     "type": "git",
@@ -22,16 +23,17 @@
     "typescript": "^3.6.4"
   },
   "devDependencies": {
+    "@peerigon/typescript-validate": "file:/.",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
-    "@peerigon/typescript-validate": "file:/.",
     "eslint": "^5.16.0",
-    "eslint-config-peerigon": "^25.0.0",
+    "eslint-config-peerigon": "^25.0.1",
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-prefer-arrow": "^1.1.7",
     "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
