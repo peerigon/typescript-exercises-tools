@@ -20,9 +20,9 @@ export const add = (a: number, b: string) => {
 add(3, 4);
 ```
 
-With the TypeScript language server plugin provided by this module, these expected type errors will show up as an suggestion instead of an error:
+With the TypeScript language server plugin provided by this module, these expected type errors will show up as a suggestion instead of an error:
 
-![Screenshot of an editor that shows a type error as an suggestion](./docs/editor-screenshot-1.jpg)
+![Screenshot of an editor that shows a type error as a suggestion](./docs/editor-screenshot-1.jpg)
 ![Screenshot of an editor that shows the suggestion popup](./docs/editor-screenshot-2.jpg)
 
 Furthermore, these comments will cause the editor to show an error if there is *no type error* at this location:
@@ -72,7 +72,7 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 
 ## API
 
-### `assertProgramToOnlyHaveExpectedErrors(programPath: string, compilerOptions?: ts.CompilerOptions): void`
+### assertProgramToOnlyHaveExpectedErrors(<br>&nbsp;&nbsp;&nbsp;&nbsp;programPath: string,<br>&nbsp;&nbsp;&nbsp;&nbsp;compilerOptions?: ts.CompilerOptions,<br>): void
 
 Compiles the program at the given `programPath` and throws the first unexpected error it encounters. It's recommended to use an absolute path. If you don't pass any `compilerOptions` to this function, it uses TypeScript's internal `findConfigFile()` to locate the closest `tsconfig.json` to `programPath`.
 
@@ -86,3 +86,13 @@ assertProgramToOnlyHaveExpectedErrors(
     {strict: true} // custom compiler options
 );
 ```
+
+
+## License
+
+Unlicense
+
+
+## Sponsors
+
+[<img src="https://assets.peerigon.com/peerigon/logo/peerigon-logo-flat-spinat.png" width="150" />](https://peerigon.com)
