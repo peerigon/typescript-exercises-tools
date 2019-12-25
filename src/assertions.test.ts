@@ -1,17 +1,30 @@
 import {assertProgramToOnlyHaveExpectedErrors} from "./assertions";
+import {fixturePaths} from "./test/fixtures";
 
 describe("assertProgramToOnlyHaveExpectedErrors()", () => {
-    test("It throws no error when the program has only expected errors", () => {
-        assertProgramToOnlyHaveExpectedErrors(require.resolve("./test/fixtures/ok.ts"));
+    test("throws no error when the program has only expected errors", () => {
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.ok);
     });
 
-    test("It throws an error when the comment is at a wrong place", () => {
+    test("throws an error when the comment is at a wrong place", () => {
         expect(() =>
-            assertProgramToOnlyHaveExpectedErrors(
-                require.resolve("./test/fixtures/error-wrong-place.ts"),
-            ),
+            assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorWrongPlace),
         ).toThrowErrorMatchingInlineSnapshot(
             "\"Argument of type '4' is not assignable to parameter of type 'string'.\"",
+        );
+    });
+
+    test("locates the closest tsconfig.json to the given program", () => {
+        // This should not throw because the tsconfig.json inside the fixtures directory
+        // doesn't specify strict: true.
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode);
+    });
+
+    test("allows to pass custom compilerOptions", () => {
+        expect(() =>
+            assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode, {strict: true}),
+        ).toThrowErrorMatchingInlineSnapshot(
+            "\"Type 'null' is not assignable to type 'number'.\"",
         );
     });
 });

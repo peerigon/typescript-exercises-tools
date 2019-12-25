@@ -1,7 +1,11 @@
 import ts from "./typescript";
-import {getExpectedDiagnostics, getUnexpectedDiagnostics, getMissingExpectedDiagnostics} from "./diagnostics";
+import {
+    getExpectedDiagnostics,
+    getUnexpectedDiagnostics,
+    getMissingExpectedDiagnostics,
+} from "./diagnostics";
 
-export const assertProgramToOnlyHaveExpectedErrors = (programPath: string) => {
+const findCompilerOptionsFor = (programPath: string) => {
     const parseConfigHost: ts.ParseConfigHost = {
         fileExists: ts.sys.fileExists.bind(ts.sys),
         readFile: ts.sys.readFile.bind(ts.sys),
@@ -12,7 +16,7 @@ export const assertProgramToOnlyHaveExpectedErrors = (programPath: string) => {
     const configFileName = ts.findConfigFile(
         programPath,
         ts.sys.fileExists.bind(ts.sys),
-        "tsconfig.json"
+        "tsconfig.json",
     );
 
     if (configFileName === undefined) {
@@ -24,16 +28,27 @@ export const assertProgramToOnlyHaveExpectedErrors = (programPath: string) => {
     const {options: compilerOptions} = ts.parseJsonConfigFileContent(
         configFile.config,
         parseConfigHost,
-        programPath
+        programPath,
     );
 
+    return compilerOptions;
+};
+
+export const assertProgramToOnlyHaveExpectedErrors = (
+    programPath: string,
+    compilerOptions = findCompilerOptionsFor(programPath),
+) => {
     const program = ts.createProgram([programPath], compilerOptions);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const sourceFile = program.getSourceFile(programPath)!;
     const actualDiagnostics = Array.from(ts.getPreEmitDiagnostics(program, sourceFile));
     const expectedDiagnostics = getExpectedDiagnostics(sourceFile);
     const unexpectedDiagnostics = getUnexpectedDiagnostics(actualDiagnostics, expectedDiagnostics);
-    const missingExpectedDiagnostics = getMissingExpectedDiagnostics(actualDiagnostics, expectedDiagnostics);
+
+    const missingExpectedDiagnostics = getMissingExpectedDiagnostics(
+        actualDiagnostics,
+        expectedDiagnostics,
+    );
 
     if (unexpectedDiagnostics.length > 0) {
         throw new Error(unexpectedDiagnostics[0].messageText.toString());
