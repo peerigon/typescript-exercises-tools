@@ -5,7 +5,7 @@ export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
     const sourceCode = sourceFile.getFullText();
 
     const annotations = sourceCode.matchAll(
-        /(.*?\/\/ 💣 Expect error (\d+): (.*?)\r?\n\s*)([^\n\r]*)/g,
+        /(.*?\/\/ 💣? ?Expect error (\d+): (.*?)\r?\n\s*)([^\n\r]*)/g,
     );
 
     return Array.from(annotations, (annotation) => {
