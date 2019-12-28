@@ -13,7 +13,8 @@
     "lint": "eslint --ext ts --ignore-path ./.eslintignore src",
     "prepare": "run-p build",
     "watch:build:tsc": "npm run build:tsc -- -w",
-    "prepublishOnly": "pubcop"
+    "prepublishOnly": "pubcop",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
