@@ -1,6 +1,6 @@
 @peerigon/typescript-exercises-tools
 =============================
-**Tools for validating TypeScript exercises.**
+**Tools for writing and validating TypeScript exercises.**
 
 [![](https://img.shields.io/npm/v/@peerigon/typescript-exercises-tools.svg)](https://www.npmjs.com/package/@peerigon/typescript-exercises-tools)
 [![](https://img.shields.io/npm/dm/@peerigon/typescript-exercises-tools.svg)](https://www.npmjs.com/package/@peerigon/typescript-exercises-tools)
