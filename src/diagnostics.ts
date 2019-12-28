@@ -5,13 +5,16 @@ export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
     const sourceCode = sourceFile.getFullText();
 
     const annotations = sourceCode.matchAll(
-        /(.*?\/\/ 💣? ?Expect error (\d+): (.*?)\r?\n\s*)([^\n\r]*)/g,
+        /(.*?\/\/ 💣? ?Expect error (\d+)(.*?)\r?\n\s*)([^\n\r]*)/g,
     );
 
     return Array.from(annotations, (annotation) => {
         const [, comment, code, expectedErrorMessage, nextLine] = annotation;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const start = annotation.index! + comment.length;
+
+        const messageText = `Missing error ${code}` +
+            (expectedErrorMessage === "" ? "" : `"${expectedErrorMessage}"`);
 
         return {
             file: sourceFile,
@@ -20,7 +23,7 @@ export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
             length: nextLine.length,
             code: parseInt(code),
             source: pluginName,
-            messageText: `Missing error "${expectedErrorMessage}"`,
+            messageText,
         };
     });
 };
