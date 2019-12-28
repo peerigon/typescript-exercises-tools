@@ -2,7 +2,7 @@
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
         "plugins": [{
-            "name": "@peerigon/typescript-validate/plugin"
+            "name": "@peerigon/typescript-exercises-tools/plugin"
         }]
     },
     "include": ["./"]

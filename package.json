@@ -1,7 +1,7 @@
 {
-  "name": "@peerigon/typescript-validate",
+  "name": "@peerigon/typescript-exercises-tools",
   "version": "0.0.1",
-  "description": "Validate TypeScript files with inline comments",
+  "description": "Tools for validating TypeScript exercises",
   "main": "dist/main.js",
   "scripts": {
     "build": "run-s build:clean build:tsc",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/peerigon/typescript-validate.git"
+    "url": "https://github.com/peerigon/typescript-exercises-tools.git"
   },
   "author": "peerigon <developers@peerigon.com>",
   "license": "Unlicense",
@@ -24,7 +24,7 @@
     "typescript": "^3.6.4"
   },
   "devDependencies": {
-    "@peerigon/typescript-validate": "file:/.",
+    "@peerigon/typescript-exercises-tools": "file:/.",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
