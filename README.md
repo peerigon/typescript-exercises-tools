@@ -20,7 +20,7 @@ export const add = (a: number, b: string) => {
 add(3, 4);
 ```
 
-With the TypeScript language server plugin provided by this module, these expected type errors will show up as a suggestion instead of an error:
+With the TypeScript language service plugin provided by this module, these expected type errors will show up as a suggestion instead of an error:
 
 ![Screenshot of an editor that shows a type error as a suggestion](./docs/editor-screenshot-1.jpg)
 ![Screenshot of an editor that shows the suggestion popup](./docs/editor-screenshot-2.jpg)
