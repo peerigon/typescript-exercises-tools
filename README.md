@@ -1,6 +1,6 @@
 @peerigon/typescript-exercises-tools
 =============================
-**Validate TypeScript files with inline comments.**
+**Tools for validating TypeScript exercises.**
 
 [![](https://img.shields.io/npm/v/@peerigon/typescript-exercises-tools.svg)](https://www.npmjs.com/package/@peerigon/typescript-exercises-tools)
 [![](https://img.shields.io/npm/dm/@peerigon/typescript-exercises-tools.svg)](https://www.npmjs.com/package/@peerigon/typescript-exercises-tools)
@@ -16,7 +16,7 @@ export const add = (a: number, b: string) => {
     return a + b;
 };
 
-// 💣 Expect error 2345: Argument of type '4' is not assignable to parameter of type...
+// 💥 Expect error 2345: Argument of type '4' is not assignable to parameter of type...
 add(3, 4);
 ```
 
