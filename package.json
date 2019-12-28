@@ -1,6 +1,6 @@
 {
   "name": "@peerigon/typescript-exercises-tools",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Tools for writing and validating TypeScript exercises",
   "keywords": ["typescript", "language", "service", "server", "validate", "validation", "test", "types", "exercise"],
   "main": "dist/main.js",
