@@ -7,5 +7,8 @@
     "env": {
         "node": true
     },
-    "root": true
+    "root": true,
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    }
 }
