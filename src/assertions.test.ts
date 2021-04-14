@@ -17,9 +17,7 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
     test("throws an error when the comment is at a wrong place", () => {
         expect(() =>
             assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorWrongPlace),
-        ).toThrowErrorMatchingInlineSnapshot(
-            "\"Type '\\\"my string\\\"' is not assignable to type 'number'.\"",
-        );
+        ).toThrowErrorMatchingInlineSnapshot("\"Type 'string' is not assignable to type 'number'.\"");
     });
 
     test("locates the closest tsconfig.json to the given program", () => {
