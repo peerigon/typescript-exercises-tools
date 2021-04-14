@@ -25,7 +25,7 @@ const findCompilerOptionsFor = (programPath: string) => {
 
     const configFile = ts.readConfigFile(configFileName, ts.sys.readFile.bind(ts.sys));
 
-    const {options: compilerOptions} = ts.parseJsonConfigFileContent(
+    const { options: compilerOptions } = ts.parseJsonConfigFileContent(
         configFile.config,
         parseConfigHost,
         programPath,
@@ -39,7 +39,6 @@ export const assertProgramToOnlyHaveExpectedErrors = (
     compilerOptions = findCompilerOptionsFor(programPath),
 ) => {
     const program = ts.createProgram([programPath], compilerOptions);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const sourceFile = program.getSourceFile(programPath)!;
     const actualDiagnostics = Array.from(ts.getPreEmitDiagnostics(program, sourceFile));
     const expectedDiagnostics = getExpectedDiagnostics(sourceFile);

@@ -1,5 +1,5 @@
-import {assertProgramToOnlyHaveExpectedErrors} from "./assertions";
-import {fixturePaths} from "./test/fixtures";
+import { assertProgramToOnlyHaveExpectedErrors } from "./assertions";
+import { fixturePaths } from "./test/fixtures";
 
 describe("assertProgramToOnlyHaveExpectedErrors()", () => {
     test("throws no error when the program has only expected errors (ok-variable.ts)", () => {

@@ -1,5 +1,5 @@
 import ts from "./typescript";
-import {pluginName} from "./const";
+import { pluginName } from "./const";
 
 export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
     const sourceCode = sourceFile.getFullText();

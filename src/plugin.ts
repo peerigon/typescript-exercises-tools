@@ -15,7 +15,6 @@ const init = () => {
                     proxy[k as keyof ts.LanguageService] = (...args: Array<any>) => x.apply(info.languageService, args);
                 });
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
             proxy.getSemanticDiagnostics = (...paths) => {
                 const actualDiagnostics = info.languageService.getSemanticDiagnostics(...paths);
                 const program = info.languageService.getProgram();
