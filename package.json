@@ -2,8 +2,18 @@
   "name": "@peerigon/typescript-exercises-tools",
   "version": "1.0.0",
   "description": "Tools for writing and validating TypeScript exercises",
-  "keywords": ["typescript", "language", "service", "server", "validate", "validation", "test", "types", "exercise"],
-  "main": "dist/main.js",
+  "keywords": [
+    "typescript",
+    "language",
+    "service",
+    "server",
+    "validate",
+    "validation",
+    "test",
+    "types",
+    "exercise"
+  ],
+  "main": "plugin.js",
   "scripts": {
     "build": "run-s build:clean build:tsc",
     "build:clean": "rimraf dist",
@@ -23,7 +33,7 @@
   "author": "peerigon <developers@peerigon.com>",
   "license": "Unlicense",
   "peerDependencies": {
-    "typescript": "^3.6.4"
+    "typescript": "^4.2.4"
   },
   "devDependencies": {
     "@peerigon/typescript-exercises-tools": "file:/.",
@@ -44,10 +54,11 @@
     "standard-version": "^7.0.1",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.4"
+    "typescript": "^4.2.4"
   },
   "files": [
     "dist",
-    "plugin.js"
+    "plugin.js",
+    "tests.js"
   ]
 }

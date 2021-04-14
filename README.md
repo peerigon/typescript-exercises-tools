@@ -32,7 +32,7 @@ Furthermore, these comments will cause the editor to show an error if there is *
 At the time of writing, only editors use TypeScript language service plugins. Calling `tsc` from the command line will not execute the plugin. That's why there is also a programmatic API that allows you to do assertions on the program:
 
 ```ts
-import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools";
+import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools/tests";
 
 test("The program has only expected errors", () => {
     assertProgramToOnlyHaveExpectedErrors("/path/to/module.ts");
@@ -56,7 +56,7 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 {
     "compilerOptions": {
         "plugins": [{
-            "name": "@peerigon/typescript-exercises-tools/plugin"
+            "name": "@peerigon/typescript-exercises-tools"
         }]
     }
 }
@@ -77,7 +77,7 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 Compiles the program at the given `programPath` and throws the first unexpected error it encounters. It's recommended to use an absolute path. If you don't pass any `compilerOptions` to this function, it uses TypeScript's internal `findConfigFile()` to locate the closest `tsconfig.json` to `programPath`.
 
 ```ts
-import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools";
+import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools/tests";
 
 assertProgramToOnlyHaveExpectedErrors("/path/to/module.ts"); // may throw
 
