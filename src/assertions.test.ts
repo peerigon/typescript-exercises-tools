@@ -28,7 +28,11 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
 
     test("allows to pass custom compilerOptions", () => {
         expect(() =>
-            assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode, {strict: true}),
+            assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode, { strict: true }),
         ).toThrowErrorMatchingInlineSnapshot("\"Type 'null' is not assignable to type 'number'.\"");
+    });
+
+    test("throws no error when the program has only expected errors (ok-double-comment.ts)", () => {
+        assertProgramToOnlyHaveExpectedErrors(fixturePaths.okDoubleComment, { strict: true });
     });
 });

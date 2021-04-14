@@ -70,6 +70,23 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 }
 ```
 
+## Support for multiple errors
+If you expect more than one error, you can add multiple comments, like this:
+
+```ts
+type Person = {
+    readonly name: string;
+};
+
+const person: Person = {
+    name: "Bob",
+};
+
+// 💥 Expect error 2704: … cannot be a read-only property.
+// 💥 Expect error 2790: … must be optional.
+delete person.name;
+```
+
 ## API
 
 ### assertProgramToOnlyHaveExpectedErrors(<br>&nbsp;&nbsp;&nbsp;&nbsp;programPath: string,<br>&nbsp;&nbsp;&nbsp;&nbsp;compilerOptions?: ts.CompilerOptions,<br>): void

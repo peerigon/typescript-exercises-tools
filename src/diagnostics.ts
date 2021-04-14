@@ -1,25 +1,39 @@
 import ts from "./typescript";
 import { pluginName } from "./const";
 
-export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
+const parseAnnotations = (sourceFile: ts.SourceFile) => {
     const sourceCode = sourceFile.getFullText();
 
-    const annotations = sourceCode.matchAll(
-        /(.*?\/\/ 💥? ?Expect error (\d+):? ?(.*?)\r?\n\s*)([^\n\r]*)/g,
-    );
+    const regex = /([\t ]*?\/\/ 💥? ?Expect error (\d+):? ?(.*?)\n)(?:\n|\s|.*?\/\/ 💥? ?Expect error \d+.*?\n)*([^\n\r]*)/g;
+
+    let match = regex.exec(sourceCode);
+    const results = [];
+
+    while (match !== null) {
+        const [, comment, code, message, nextLine] = match;
+        const nextLineStart = regex.lastIndex - nextLine.length;
+
+        results.push({ comment, code, message, nextLine, nextLineStart });
+        // Rewind index to end of last comment to be able to parse multiple comments
+        regex.lastIndex = match.index + comment.length;
+        match = regex.exec(sourceCode);
+    }
+
+    return results;
+};
+
+export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
+    const annotations = parseAnnotations(sourceFile);
 
     return Array.from(annotations, (annotation) => {
-        const [, comment, code, expectedErrorMessage, nextLine] = annotation;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const start = annotation.index! + comment.length;
-
+        const { code, message, nextLine, nextLineStart } = annotation;
         const messageText = `Missing error ${code}` +
-            (expectedErrorMessage === "" ? "" : ` "${expectedErrorMessage}"`);
+            (message === "" ? "" : ` "${message}"`);
 
         return {
             file: sourceFile,
             category: ts.DiagnosticCategory.Error,
-            start,
+            start: nextLineStart,
             length: nextLine.length,
             code: parseInt(code),
             source: pluginName,
