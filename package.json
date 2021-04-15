@@ -59,6 +59,8 @@
   "files": [
     "dist",
     "plugin.js",
-    "tests.js"
+    "plugin.d.ts",
+    "tests.js",
+    "tests.d.ts"
   ]
 }
