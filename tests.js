@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require("./dist/tests.js").default;
+module.exports = require("./dist/tests.js");
