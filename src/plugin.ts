@@ -8,6 +8,8 @@ import {
 const init = () => {
     return {
         create: (info: ts.server.PluginCreateInfo) => {
+            info.project.projectService.logger.info("Started typescript-exercise-tools plugin!");
+
             const proxy: ts.LanguageService = Object.create(null);
 
             Object.entries(info.languageService)
