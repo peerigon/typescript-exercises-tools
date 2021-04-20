@@ -4,7 +4,7 @@ import { pluginName } from "./const";
 const parseAnnotations = (sourceFile: ts.SourceFile) => {
     const sourceCode = sourceFile.getFullText();
 
-    const regex = /([\t ]*?\/\/ 💥? ?Expect error (\d+):? ?(.*?)\n)(?:\n|\s|.*?\/\/ 💥? ?Expect error \d+.*?\n)*([^\n\r]*)/g;
+    const regex = /([\t ]*?\/\/ 💥? ?Expect error (\d+):? ?(.*?)(?:\r|\n))(?:\n|\s|.*?\/\/ 💥? ?Expect error \d+.*?(?:\r|\n))*([^\n\r]*)/g;
 
     let match = regex.exec(sourceCode);
     const results = [];
