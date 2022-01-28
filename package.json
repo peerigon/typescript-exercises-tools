@@ -5,7 +5,11 @@
   "repository": "https://github.com/peerigon/typescript-exercises-tools",
   "author": "Peerigon GmbH",
   "license": "Unlicense",
-  "main": "plugin.js",
+  "main": "./dist/plugin.js",
+  "exports": {
+    ".": "./dist/plugin.js",
+    "./tests": "./dist/tests.js"
+  },
   "keywords": [
     "typescript",
     "language",
@@ -18,11 +22,7 @@
     "exercise"
   ],
   "files": [
-    "dist",
-    "plugin.js",
-    "plugin.d.ts",
-    "tests.js",
-    "tests.d.ts"
+    "dist"
   ],
   "scripts": {
     "build": "run-s build:clean build:tsc",
