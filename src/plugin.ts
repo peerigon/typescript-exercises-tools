@@ -15,8 +15,8 @@ const init = () => {
       const proxy: ts.LanguageService = Object.create(null);
 
       Object.entries(info.languageService).forEach(([k, x]) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         proxy[k as keyof ts.LanguageService] = (...args: Array<any>) =>
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           x.apply(info.languageService, args);
       });
 

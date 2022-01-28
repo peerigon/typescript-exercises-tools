@@ -4,8 +4,8 @@ import { pluginName } from "./const";
 const parseAnnotations = (sourceFile: ts.SourceFile) => {
   const sourceCode = sourceFile.getFullText();
 
-  // eslint-disable-next-line no-unsafe-regex/no-unsafe-regex
   const regex =
+    // eslint-disable-next-line no-unsafe-regex/no-unsafe-regex
     /([\t ]*?\/\/ 💥? ?Expect error (\d+):? ?(.*?)[\n\r])(?:\n|\s|.*?\/\/ 💥? ?Expect error \d+.*?[\n\r])*([^\n\r]*)/g;
 
   let match = regex.exec(sourceCode);
