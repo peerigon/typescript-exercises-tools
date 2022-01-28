@@ -1,14 +1,9 @@
 {
     "extends": [
-        "peerigon",
-        "peerigon/typescript",
-        "peerigon/styles/prefer-arrow"
+        "peerigon/presets/prettier-typescript.js"
     ],
     "env": {
         "node": true
     },
-    "root": true,
-    "parserOptions": {
-        "project": "./tsconfig.json"
-    }
+    "root": true
 }
