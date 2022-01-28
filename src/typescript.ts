@@ -4,6 +4,6 @@
 import ts from "typescript";
 import tsserverlibrary from "typescript/lib/tsserverlibrary.js";
 
-export {tsserverlibrary};
+export { tsserverlibrary };
 
 export default ts;

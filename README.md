@@ -1,5 +1,5 @@
-@peerigon/typescript-exercises-tools
-=============================
+# @peerigon/typescript-exercises-tools
+
 **Tools for writing and validating TypeScript exercises.**
 
 [![](https://img.shields.io/npm/v/@peerigon/typescript-exercises-tools.svg)](https://www.npmjs.com/package/@peerigon/typescript-exercises-tools)
@@ -13,7 +13,7 @@ This module allows you to annotate expected type errors in your TypeScript code 
 
 ```ts
 export const add = (a: number, b: string) => {
-    return a + b;
+  return a + b;
 };
 
 // 💥 Expect error 2345: Argument of type '4' is not assignable to parameter of type...
@@ -25,17 +25,17 @@ With the TypeScript language service plugin provided by this module, these expec
 ![Screenshot of an editor that shows a type error as a suggestion](./docs/editor-screenshot-1.jpg)
 ![Screenshot of an editor that shows the suggestion popup](./docs/editor-screenshot-2.jpg)
 
-Furthermore, these comments will cause the editor to show an error if there is *no type error* at this location:
+Furthermore, these comments will cause the editor to show an error if there is _no type error_ at this location:
 
 ![Screenshot of an editor that shows an error when there is no type error](./docs/editor-screenshot-3.jpg)
 
 At the time of writing, only editors use TypeScript language service plugins. Calling `tsc` from the command line will not execute the plugin. That's why there is also a programmatic API that allows you to do assertions on the program:
 
 ```ts
-import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools/tests";
+import { assertProgramToOnlyHaveExpectedErrors } from "@peerigon/typescript-exercises-tools/tests";
 
 test("The program has only expected errors", () => {
-    assertProgramToOnlyHaveExpectedErrors("/path/to/module.ts");
+  assertProgramToOnlyHaveExpectedErrors("/path/to/module.ts");
 });
 ```
 
@@ -54,11 +54,13 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 
 ```json
 {
-    "compilerOptions": {
-        "plugins": [{
-            "name": "@peerigon/typescript-exercises-tools"
-        }]
-    }
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@peerigon/typescript-exercises-tools"
+      }
+    ]
+  }
 }
 ```
 
@@ -66,20 +68,21 @@ Now you need to add the TypeScript language service plugin to your `tsconfig.jso
 
 ```json
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
 ```
 
 ## Support for multiple errors
+
 If you expect more than one error, you can add multiple comments, like this:
 
 ```ts
 type Person = {
-    readonly name: string;
+  readonly name: string;
 };
 
 const person: Person = {
-    name: "Bob",
+  name: "Bob",
 };
 
 // 💥 Expect error 2704: … cannot be a read-only property.
@@ -94,21 +97,19 @@ delete person.name;
 Compiles the program at the given `programPath` and throws the first unexpected error it encounters. It's recommended to use an absolute path. If you don't pass any `compilerOptions` to this function, it uses TypeScript's internal `findConfigFile()` to locate the closest `tsconfig.json` to `programPath`.
 
 ```ts
-import {assertProgramToOnlyHaveExpectedErrors} from "@peerigon/typescript-exercises-tools/tests";
+import { assertProgramToOnlyHaveExpectedErrors } from "@peerigon/typescript-exercises-tools/tests";
 
 assertProgramToOnlyHaveExpectedErrors("/path/to/module.ts"); // may throw
 
 assertProgramToOnlyHaveExpectedErrors(
-    "/path/to/module.ts",
-    {strict: true} // custom compiler options
+  "/path/to/module.ts",
+  { strict: true } // custom compiler options
 );
 ```
-
 
 ## License
 
 Unlicense
-
 
 ## Sponsors
 

@@ -1,9 +1,9 @@
 type Person = {
-    readonly name: string;
+  readonly name: string;
 };
 
 const person: Person = {
-    name: "Bob",
+  name: "Bob",
 };
 
 // 💥 Expect error 2704: … cannot be a read-only property.
