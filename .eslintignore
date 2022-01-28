@@ -1,2 +1,0 @@
-# Ignore the typescript module to prevent linting from getting really slow
-src/typescript.ts
