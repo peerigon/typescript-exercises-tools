@@ -5,9 +5,9 @@
   "repository": "https://github.com/peerigon/typescript-exercises-tools",
   "author": "Peerigon GmbH",
   "license": "Unlicense",
-  "main": "./dist/plugin.js",
+  "main": "./dist/main.js",
   "exports": {
-    ".": "./dist/plugin.js",
+    ".": "./dist/main.js",
     "./tests": "./dist/tests.js"
   },
   "keywords": [
