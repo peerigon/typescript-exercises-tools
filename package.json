@@ -33,7 +33,7 @@
     "test:suite": "jest",
     "test:lint": "eslint --max-warnings 0 --cache --ext js,jsx,cjs,mjs,ts,tsx --ignore-path .gitignore .",
     "prepublishOnly": "run-p build",
-    "release": "echo 'Dummy release script'",
+    "release": "semantic-release",
     "prepare": "husky install"
   },
   "peerDependencies": {
