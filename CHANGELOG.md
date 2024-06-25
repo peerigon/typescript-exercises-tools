@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/peerigon/typescript-exercises-tools/compare/v2.0.0...v3.0.0) (2024-06-25)
+
+### Features
+
+- Update dependencies ([e17480a](https://github.com/peerigon/typescript-exercises-tools/commit/e17480a726e866036228fbbf847010ea6051231f))
+
+### BREAKING CHANGES
+
+- We had to remove support for multiple errors as TypeScript will only report one error at a time now.
+
 # [2.0.0](https://github.com/peerigon/typescript-exercises-tools/compare/v1.1.1...v2.0.0) (2022-12-20)
 
 ### Bug Fixes
