@@ -4,5 +4,4 @@ export const fixturePaths = {
   okFunction: require.resolve("./fixtures/ok-function.ts"),
   okVariable: require.resolve("./fixtures/ok-variable.ts"),
   okPrecedingComment: require.resolve("./fixtures/ok-preceding-comment.ts"),
-  okDoubleComment: require.resolve("./fixtures/ok-double-comment.ts"),
 };

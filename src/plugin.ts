@@ -1,3 +1,4 @@
+import * as ts from "typescript";
 import {
   getExpectedDiagnostics,
   getUnexpectedDiagnostics,
@@ -9,7 +10,7 @@ const init = () => {
   return {
     create: (info: ts.server.PluginCreateInfo) => {
       info.project.projectService.logger.info(
-        "Started typescript-exercise-tools plugin!"
+        "Started typescript-exercise-tools plugin!",
       );
 
       const proxy: ts.LanguageService = Object.create(null);
@@ -22,7 +23,7 @@ const init = () => {
 
       proxy.getSemanticDiagnostics = (...paths) => {
         const actualDiagnostics = info.languageService.getSemanticDiagnostics(
-          ...paths
+          ...paths,
         );
         const program = info.languageService.getProgram();
 
@@ -37,7 +38,7 @@ const init = () => {
           .map((path) => program.getSourceFile(path))
           .filter(
             (sourceFile): sourceFile is ts.SourceFile =>
-              sourceFile !== undefined
+              sourceFile !== undefined,
           )
           .map((sourceFile) => getExpectedDiagnostics(sourceFile));
 
@@ -46,20 +47,20 @@ const init = () => {
 
         const unexpectedDiagnostics = getUnexpectedDiagnostics(
           actualDiagnostics,
-          expectedDiagnosticsFlat
+          expectedDiagnosticsFlat,
         );
 
         const missingExpectedDiagnostics = getMissingExpectedDiagnostics(
           actualDiagnostics,
-          expectedDiagnosticsFlat
+          expectedDiagnosticsFlat,
         );
 
         const completeDiagnostics = unexpectedDiagnostics.concat(
           missingExpectedDiagnostics,
           lowerSeverityOfExpectedDiagnostics(
             actualDiagnostics,
-            expectedDiagnosticsFlat
-          )
+            expectedDiagnosticsFlat,
+          ),
         );
 
         return completeDiagnostics;

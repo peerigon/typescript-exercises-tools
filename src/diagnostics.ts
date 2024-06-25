@@ -46,7 +46,7 @@ export const getExpectedDiagnostics = (sourceFile: ts.SourceFile) => {
 
 const isInSameRange = (
   diagnosticA: ts.Diagnostic,
-  diagnosticB: ts.Diagnostic
+  diagnosticB: ts.Diagnostic,
 ) => {
   const startA = diagnosticA.start;
   const startB = diagnosticB.start;
@@ -84,11 +84,11 @@ export const matchesDiagnostic = (diagnosticA: ts.Diagnostic) => {
 
 export const getUnexpectedDiagnostics = (
   actualDiagnostics: Array<ts.Diagnostic>,
-  expectedDiagnostics: Array<ts.Diagnostic>
+  expectedDiagnostics: Array<ts.Diagnostic>,
 ) => {
   const unexpectedDiagnostics = actualDiagnostics.filter(
     (actualDiagnostic) =>
-      expectedDiagnostics.some(matchesDiagnostic(actualDiagnostic)) === false
+      expectedDiagnostics.some(matchesDiagnostic(actualDiagnostic)) === false,
   );
 
   return unexpectedDiagnostics;
@@ -96,11 +96,11 @@ export const getUnexpectedDiagnostics = (
 
 export const getMissingExpectedDiagnostics = (
   actualDiagnostics: Array<ts.Diagnostic>,
-  expectedDiagnostics: Array<ts.Diagnostic>
+  expectedDiagnostics: Array<ts.Diagnostic>,
 ) => {
   const missingExpectedDiagnostics = expectedDiagnostics.filter(
     (expectedDiagnostic) =>
-      actualDiagnostics.some(matchesDiagnostic(expectedDiagnostic)) === false
+      actualDiagnostics.some(matchesDiagnostic(expectedDiagnostic)) === false,
   );
 
   return missingExpectedDiagnostics;
@@ -108,12 +108,12 @@ export const getMissingExpectedDiagnostics = (
 
 export const lowerSeverityOfExpectedDiagnostics = (
   actualDiagnostics: Array<ts.Diagnostic>,
-  expectedDiagnostics: Array<ts.Diagnostic>
+  expectedDiagnostics: Array<ts.Diagnostic>,
 ) => {
   return expectedDiagnostics
     .map((expectedDiagnostic) => {
       const actualDiagnostic = actualDiagnostics.find(
-        matchesDiagnostic(expectedDiagnostic)
+        matchesDiagnostic(expectedDiagnostic),
       );
 
       return actualDiagnostic === undefined

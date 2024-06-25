@@ -16,7 +16,7 @@ const findCompilerOptionsFor = (programPath: string) => {
   const configFileName = ts.findConfigFile(
     programPath,
     ts.sys.fileExists.bind(ts.sys),
-    "tsconfig.json"
+    "tsconfig.json",
   );
 
   if (configFileName === undefined) {
@@ -25,13 +25,13 @@ const findCompilerOptionsFor = (programPath: string) => {
 
   const configFile = ts.readConfigFile(
     configFileName,
-    ts.sys.readFile.bind(ts.sys)
+    ts.sys.readFile.bind(ts.sys),
   );
 
   const { options: compilerOptions } = ts.parseJsonConfigFileContent(
     configFile.config,
     parseConfigHost,
-    programPath
+    programPath,
   );
 
   return compilerOptions;
@@ -39,22 +39,27 @@ const findCompilerOptionsFor = (programPath: string) => {
 
 export const assertProgramToOnlyHaveExpectedErrors = (
   programPath: string,
-  compilerOptions = findCompilerOptionsFor(programPath)
+  compilerOptions = findCompilerOptionsFor(programPath),
 ) => {
   const program = ts.createProgram([programPath], compilerOptions);
-  const sourceFile = program.getSourceFile(programPath)!;
+  const sourceFile = program.getSourceFile(programPath);
+
+  if (sourceFile === undefined) {
+    throw new Error(`Cannot find source file "${programPath}"`);
+  }
+
   const actualDiagnostics = Array.from(
-    ts.getPreEmitDiagnostics(program, sourceFile)
+    ts.getPreEmitDiagnostics(program, sourceFile),
   );
   const expectedDiagnostics = getExpectedDiagnostics(sourceFile);
   const unexpectedDiagnostics = getUnexpectedDiagnostics(
     actualDiagnostics,
-    expectedDiagnostics
+    expectedDiagnostics,
   );
 
   const missingExpectedDiagnostics = getMissingExpectedDiagnostics(
     actualDiagnostics,
-    expectedDiagnostics
+    expectedDiagnostics,
   );
 
   if (unexpectedDiagnostics.length > 0) {
