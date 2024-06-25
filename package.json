@@ -37,7 +37,7 @@
     "prepare": "husky install"
   },
   "peerDependencies": {
-    "typescript": "^4.9.4"
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
     "@peerigon/typescript-exercises-tools": "file:/.",
@@ -45,8 +45,6 @@
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.8",
-    "@typescript-eslint/eslint-plugin": "^5.47.0",
-    "@typescript-eslint/parser": "^5.47.0",
     "eslint": "^8.56.0",
     "eslint-config-peerigon": "^39.0.1",
     "husky": "^9.0.11",

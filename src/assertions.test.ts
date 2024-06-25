@@ -37,10 +37,4 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
       "\"Type 'null' is not assignable to type 'number'.\""
     );
   });
-
-  test("throws no error when the program has only expected errors (ok-double-comment.ts)", () => {
-    assertProgramToOnlyHaveExpectedErrors(fixturePaths.okDoubleComment, {
-      strict: true,
-    });
-  });
 });

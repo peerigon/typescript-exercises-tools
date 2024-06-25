@@ -42,7 +42,12 @@ export const assertProgramToOnlyHaveExpectedErrors = (
   compilerOptions = findCompilerOptionsFor(programPath)
 ) => {
   const program = ts.createProgram([programPath], compilerOptions);
-  const sourceFile = program.getSourceFile(programPath)!;
+  const sourceFile = program.getSourceFile(programPath);
+
+  if (sourceFile === undefined) {
+    throw new Error(`Cannot find source file "${programPath}"`);
+  }
+
   const actualDiagnostics = Array.from(
     ts.getPreEmitDiagnostics(program, sourceFile)
   );

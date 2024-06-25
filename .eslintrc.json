@@ -1,6 +1,6 @@
 {
     "extends": [
-        "peerigon/presets/prettier-typescript.js"
+        "peerigon/presets/typescript.js"
     ],
     "env": {
         "node": true
