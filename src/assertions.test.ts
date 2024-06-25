@@ -16,9 +16,9 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
 
   test("throws an error when the comment is at a wrong place", () => {
     expect(() =>
-      assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorWrongPlace)
+      assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorWrongPlace),
     ).toThrowErrorMatchingInlineSnapshot(
-      "\"Type 'string' is not assignable to type 'number'.\""
+      "\"Type 'string' is not assignable to type 'number'.\"",
     );
   });
 
@@ -32,9 +32,9 @@ describe("assertProgramToOnlyHaveExpectedErrors()", () => {
     expect(() =>
       assertProgramToOnlyHaveExpectedErrors(fixturePaths.errorInStrictMode, {
         strict: true,
-      })
+      }),
     ).toThrowErrorMatchingInlineSnapshot(
-      "\"Type 'null' is not assignable to type 'number'.\""
+      "\"Type 'null' is not assignable to type 'number'.\"",
     );
   });
 });
